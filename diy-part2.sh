@@ -13,6 +13,7 @@
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
+#clone to package
 function pull_from_github()
 {
 	echo "+++++++++++++++++++++++++++++++++++++++++"
@@ -41,17 +42,33 @@ function pull_from_github()
 		echo "------------------------------------------"
 	fi
 }
+#clone sub directory to package
+function git_clone_path() {
+          branch="$1" rurl="$2" localdir="./package/gitemp" && shift 2
+		  [ -e $localdir ] rm -rf $localdir
+          git clone -b $branch --depth 1 --filter=blob:none --sparse $rurl $localdir
+          if [ "$?" != 0 ]; then
+            echo "error on $rurl"
+            return 0
+          fi
+          cd $localdir
+          git sparse-checkout init --cone
+		  for pname in "$@"
+		  do
+          	git sparse-checkout set $pname
+		  	mv -n $pname/* ../$pname/ || cp -rf $pname ../$(dirname "$pname")/
+		  done
+          cd ../..
+		  rm -rf $localdir
+          }
 
 # 添加额外软件包
 pull_from_github tty228 luci-app-adguardhome
 pull_from_github tty228 luci-app-serverchan openwrt-18.06
 pull_from_github esirplayground luci-app-poweroff
 pull_from_github pymumu luci-app-smartdns lede
-pull_from_github_svn xiaorouji openwrt-passwall-packages/trunk pdnsd-alt
 
-# 流量监控
-pull_from_github_svn haiibo packages/trunk luci-app-wrtbwmon
-pull_from_github_svn haiibo packages/trunk wrtbwmon
+git_clone_path main https://github.com/xiaorouji/openwrt-passwall-packages pdnsd-alt
 # Themes
 pull_from_github kiddin9 luci-theme-edge
 pull_from_github jerrykuku luci-theme-argon
@@ -61,7 +78,7 @@ pull_from_github xiaoqingfengATGH luci-theme-infinityfreedom
 
 
 # 在线用户
-pull_from_github_svn haiibo packages/trunk luci-app-onliner
+git_clone_path main https://github.com/haiibo/packages luci-app-wrtbwmon wrtbwmon luci-app-onliner
 
 grep -n "refresh_interval=2s" package/lean/default-settings/files/zzz-default-settings
 if [ $? -ne 0 ]; then
