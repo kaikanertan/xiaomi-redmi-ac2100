@@ -16,7 +16,7 @@ A repo from https://p3terx.com build Openwrt for Xiaomi AC2100/Redmi AC2100
 https://github.com/haiibo/packages/luci-app-onliner
 https://github.com/tty228/luci-app-serverchan 18.06 branch
 https://github.com/pymumu/luci-app-smartdns
-https://github.com/haiibo packages/luci-app-wrtbwmon
+https://github.com/haiibo/packages/luci-app-wrtbwmon
 https://github.com/haiibo/packages/wrtbwmon
 https://github.com/jerrykuku/luci-theme-argon
 https://github.com/jerrykuku/luci-app-argon-config
