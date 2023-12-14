@@ -110,3 +110,45 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 # 删除主题强制默认
 find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
 
+#超频 
+#0x362=1100MHz
+#0x312=1000MHz
+#0x3B2=1200MHz
+grep "rt_memc_w32(pll,MEMC_REG_CPU_PLL);" ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+if [ $? -ne 0 ]; then
+echo fix over clock
+sed -i 's/-111,49 +111,89/-111,49 +111,93/' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i 's/u32 xtal_clk, cpu_clk, bus_clk;/u32 xtal_clk, cpu_clk, bus_clk,i;/' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i '157i+		pll &= ~(0x7ff);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i '158i+		pll |=  (0x362);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i '159i+		rt_memc_w32(pll,MEMC_REG_CPU_PLL);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i '160i+		for(i=0;i<1024;i++);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+fi
+
+grep "sleep 2s" ./package/base-files/files/etc/rc.local
+if [ $? -ne 0 ]; then
+sed -i '3i\
+\
+sleep 2s\
+\# 启动2.4g 和 5g 信号\
+ip link set ra0 up\
+ip link set rai0 up\
+\
+\# 桥接网卡\
+brctl addif br-lan ra0\
+brctl addif br-lan rai0\
+\
+\# Lan Check\
+lanCheck=`uci get network.lan.ifname`\
+if [ $? -eq 0 ]; then\
+    echo $lanCheck | grep rai0 > /dev/null\
+    if [ $? -ne 0 ]; then\
+        uci set network.lan.ifname="$lanCheck rai0 ra0"\
+        uci commit\
+        echo "Updated wireless config of LAN Interface"\
+    fi\
+    echo "No need to update wireless config of LAN Interface"\
+else\
+    echo "wireless config of LAN Interface check failed. Interface may renamed." >&2\
+fi' ./package/base-files/files/etc/rc.local
+fi
