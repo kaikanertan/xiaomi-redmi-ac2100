@@ -45,7 +45,7 @@ function pull_from_github()
 #clone sub directory to package
 function git_clone_path() {
           branch="$1" rurl="$2" localdir="./package/gitemp" && shift 2
-		  [ -e $localdir ] rm -rf $localdir
+		  [ -e $localdir ] && rm -rf $localdir
           git clone -b $branch --depth 1 --filter=blob:none --sparse $rurl $localdir
           if [ "$?" != 0 ]; then
             echo "error on $rurl"
