@@ -1,4 +1,4 @@
-微xin tui so推送ongWrt
+OpenWrt for Xiaomi AC2100
 
 A repo from https://p3terx.com build Openwrt for Xiaomi AC2100/Redmi AC2100
 
