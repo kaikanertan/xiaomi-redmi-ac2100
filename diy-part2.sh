@@ -53,14 +53,14 @@ function git_clone_path() {
           fi
           cd $localdir
           git sparse-checkout init --cone
-		  for pname in "$@"
-		  do
-          	git sparse-checkout set $pname
-		  	mv -n $pname/* ../$pname/ || cp -rf $pname ../$(dirname "$pname")/
-		  done
+	  for pname in "$@"
+	  do
+          	 git sparse-checkout set $pname
+		 mv -f $@ ../$pname/ || cp -rf $pname ../$(dirname "$pname")/
+	  done
           cd ../..
-		  rm -rf $localdir
-          }
+	  rm -rf $localdir
+}
 
 # 添加额外软件包
 #R2100/RM2100资源限制无法正常使用
