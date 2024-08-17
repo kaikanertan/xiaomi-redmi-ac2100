@@ -14,15 +14,15 @@ A repo from https://p3terx.com build Openwrt for Xiaomi AC2100/Redmi AC2100
 - 第一次使用请采用全新安装，避免出现升级失败以及其他一些可能的 BUG
 
 只包含以下插件 
-onliner[https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)
-luci-app-poweroff[https://github.com/esirplayground/luci-app-poweroff](https://github.com/esirplayground/luci-app-poweroff)
-serverchan[https://github.com/tty228/luci-app-serverchan](https://github.com/tty228/luci-app-serverchan "openwrt-18.06分支")
-SmartDNS[https://github.com/pymumu/luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns "lede分支")
-luci-app-wrtbwmon[https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)
-wrtbwmon[https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)
-luci-theme-argon[https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)
-luci-app-argon-config [https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)
-luci-theme-opentopd [https://github.com/sirboy/luci-theme-opentopd](https://github.com/sirboy/luci-theme-opentopd)
-luci-theme-kucat [https://github.com/sirboy/luci-theme-kucat](https://github.com/sirboy/luci-theme-kucat "main分支")
+onliner[https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)  
+luci-app-poweroff[https://github.com/esirplayground/luci-app-poweroff](https://github.com/esirplayground/luci-app-poweroff)  
+serverchan[https://github.com/tty228/luci-app-serverchan](https://github.com/tty228/luci-app-serverchan "openwrt-18.06分支")  
+SmartDNS[https://github.com/pymumu/luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns "lede分支")  
+luci-app-wrtbwmon[https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)  
+wrtbwmon[https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)  
+luci-theme-argon[https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)  
+luci-app-argon-config [https://github.com/kiddin9/openwrt-packages](https://github.com/kiddin9/openwrt-packages)  
+luci-theme-opentopd [https://github.com/sirboy/luci-theme-opentopd](https://github.com/sirboy/luci-theme-opentopd)  
+luci-theme-kucat [https://github.com/sirboy/luci-theme-kucat](https://github.com/sirboy/luci-theme-kucat "main分支")  
 
 
