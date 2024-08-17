@@ -71,7 +71,7 @@ pull_from_github pymumu luci-app-smartdns lede
 pull_from_github sirpdboy luci-theme-opentopd
 pull_from_github sirpdboy luci-theme-kucat main
 # 在线用户
-git_clone_path https://github.com/kiddin9/openwrt-packages luci-app-wrtbwmon wrtbwmon luci-app-onliner luci-theme-argon luci-app-argon-config
+git_clone_path master https://github.com/kiddin9/openwrt-packages luci-app-wrtbwmon wrtbwmon luci-app-onliner luci-theme-argon luci-app-argon-config
 
 grep -n "refresh_interval=2s" package/lean/default-settings/files/zzz-default-settings
 if [ $? -ne 0 ]; then
