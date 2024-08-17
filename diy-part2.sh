@@ -56,7 +56,7 @@ function git_clone_path() {
 	  for pname in "$@"
 	  do
           	 git sparse-checkout set $pname
-		 mv -f $@ ../$pname/ || cp -rf $pname ../$(dirname "$pname")/
+		 mv -f $pname ../$pname/ || cp -rf $pname ../$(dirname "$pname")/
 	  done
           cd ../..
 	  rm -rf $localdir
