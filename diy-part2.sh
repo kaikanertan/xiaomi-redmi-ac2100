@@ -44,7 +44,7 @@ function pull_from_github()
 }
 #clone sub directory to package
 function git_clone_path() {
-          branch="$1" rurl="$2" localdir="./package/gitemp" && shift 2
+          branch="$1" rurl="$2" localdir="./package/git-temp" && shift 2
 		  [ -e $localdir ] && rm -rf $localdir
           git clone -b $branch --depth 1 --filter=blob:none --sparse $rurl $localdir
           if [ "$?" != 0 ]; then
@@ -63,22 +63,15 @@ function git_clone_path() {
           }
 
 # 添加额外软件包
-pull_from_github tty228 luci-app-adguardhome
+#R2100/RM2100资源限制无法正常使用
+#git_clone_path main https://github.com/sirpdboy/sirpdboy-package luci-app-adguardhome
 pull_from_github tty228 luci-app-serverchan openwrt-18.06
 pull_from_github esirplayground luci-app-poweroff
 pull_from_github pymumu luci-app-smartdns lede
-
-git_clone_path main https://github.com/xiaorouji/openwrt-passwall-packages pdnsd-alt
-# Themes
-pull_from_github kiddin9 luci-theme-edge
-pull_from_github jerrykuku luci-theme-argon
-pull_from_github jerrykuku luci-app-argon-config 
-pull_from_github thinktip luci-theme-neobird
-pull_from_github xiaoqingfengATGH luci-theme-infinityfreedom
-
-
+pull_from_github sirboy luci-theme-opentopd
+pull_from_github sirboy luci-theme-kucat main
 # 在线用户
-git_clone_path main https://github.com/haiibo/packages luci-app-wrtbwmon wrtbwmon luci-app-onliner
+git_clone_path main https://github.com/kiddin9/openwrt-packages luci-app-wrtbwmon wrtbwmon luci-app-onliner luci-theme-argon luci-app-argon-config
 
 grep -n "refresh_interval=2s" package/lean/default-settings/files/zzz-default-settings
 if [ $? -ne 0 ]; then
@@ -112,14 +105,14 @@ find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/
 
 
 # 移除重复软件包
-rm -rf feeds/packages/net/mosdns
-rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/themes/luci-theme-netgear
+#rm -rf feeds/packages/net/mosdns
+#rm -rf feeds/luci/themes/luci-theme-argon
+#rm -rf feeds/luci/themes/luci-theme-netgear
 rm -rf feeds/luci/applications/luci-app-netdata
 rm -rf feeds/luci/applications/luci-app-wrtbwmon
 rm -rf feeds/luci/applications/luci-app-dockerman
-rm -rf feeds/luci/applications/luci-app-argon-config
-rm -rf feeds/luci/applications/luci-app-mosdns
+#rm -rf feeds/luci/applications/luci-app-argon-config
+#rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-serverchan
 rm -rf feeds/luci/applications/luci-app-smartdns
 
