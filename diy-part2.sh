@@ -68,8 +68,8 @@ function git_clone_path() {
 pull_from_github tty228 luci-app-serverchan openwrt-18.06
 pull_from_github esirplayground luci-app-poweroff
 pull_from_github pymumu luci-app-smartdns lede
-pull_from_github sirboy luci-theme-opentopd
-pull_from_github sirboy luci-theme-kucat main
+pull_from_github sirpdboy luci-theme-opentopd
+pull_from_github sirpdboy luci-theme-kucat main
 # 在线用户
 git_clone_path main https://github.com/kiddin9/openwrt-packages luci-app-wrtbwmon wrtbwmon luci-app-onliner luci-theme-argon luci-app-argon-config
 
