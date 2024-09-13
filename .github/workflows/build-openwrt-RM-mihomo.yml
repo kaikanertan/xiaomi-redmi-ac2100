@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build RM2100 OpenWrt
+name: Build RM2100 OpenWrt with mihomo
 
 on:
   repository_dispatch:
